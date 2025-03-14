@@ -10,7 +10,6 @@ A mini-project developed for AFLL (Automata, Formal Languages, and Logic) that d
 This project implements:
 - Lexical analyzer (Lexer) for FORTRAN code structure
 - Syntax parser (Parser) using context-free grammar rules
-- Abstract Syntax Tree (AST) generation for valid FORTRAN constructs
 - Error handling for syntax violations
 
 ## Features:
