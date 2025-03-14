@@ -39,22 +39,11 @@ This project implements:
 3. Run the files:
    -Just open the file and run it.
 
-## Project Structure:
-```bash
-├── lexer.py           # Token specifications and lexical rules
-├── parser.py          # Grammar rules and parsing logic
-├── ast.py             # Abstract Syntax Tree implementation
-├── samples/           # Example FORTRAN programs
-│   ├── example.f
-│   └── test_case.f
-├── tests/             # Unit tests
-├── requirements.txt   # Dependency list
-└── README.md          # Project documentation
-```
-
 
 ## Dependencies:
+
 -Python 3.6 and above
+
 -PLY (Python Lex-Yacc)
 
 ## Contributors:
