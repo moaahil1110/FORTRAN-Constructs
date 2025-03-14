@@ -1,0 +1,10 @@
+INTEGER :: array(100)
+DO i = 1, 100
+    IF (x .GT. 0) THEN
+        array(i) = i * 2
+    ENDIF
+ENDDO
+
+
+x, y, z
+

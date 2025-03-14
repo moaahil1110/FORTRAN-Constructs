@@ -1,0 +1,2960 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement
+Rule 2     program -> program statement
+Rule 3     statement -> declaration
+Rule 4     statement -> assignment
+Rule 5     statement -> if_statement
+Rule 6     statement -> do_loop
+Rule 7     statement -> io_statement
+Rule 8     statement -> CONTINUE
+Rule 9     statement -> EXIT
+Rule 10    declaration -> type DCOLON IDENTIFIER
+Rule 11    declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN
+Rule 12    declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN
+Rule 13    type -> INTEGER
+Rule 14    type -> REAL
+Rule 15    type -> CHARACTER
+Rule 16    type -> LOGICAL
+Rule 17    array_dims -> NUMBER
+Rule 18    array_dims -> IDENTIFIER
+Rule 19    array_dims -> array_dims COMMA NUMBER
+Rule 20    array_dims -> array_dims COMMA IDENTIFIER
+Rule 21    assignment -> target EQUALS expression
+Rule 22    target -> IDENTIFIER
+Rule 23    target -> array_ref
+Rule 24    array_ref -> IDENTIFIER LPAREN expression RPAREN
+Rule 25    array_ref -> IDENTIFIER LPAREN expression_list RPAREN
+Rule 26    if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF
+Rule 27    if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF
+Rule 28    do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO
+Rule 29    statement_list -> statement
+Rule 30    statement_list -> statement_list statement
+Rule 31    io_statement -> PRINT TIMES COMMA print_list
+Rule 32    io_statement -> READ TIMES COMMA read_list
+Rule 33    print_list -> expression
+Rule 34    print_list -> STRING
+Rule 35    print_list -> print_list COMMA expression
+Rule 36    print_list -> print_list COMMA STRING
+Rule 37    read_list -> IDENTIFIER
+Rule 38    read_list -> read_list COMMA IDENTIFIER
+Rule 39    expression -> term
+Rule 40    expression -> expression PLUS term
+Rule 41    expression -> expression MINUS term
+Rule 42    term -> factor
+Rule 43    term -> term TIMES factor
+Rule 44    term -> term DIVIDE factor
+Rule 45    factor -> primary
+Rule 46    factor -> factor POWER primary
+Rule 47    primary -> NUMBER
+Rule 48    primary -> IDENTIFIER
+Rule 49    primary -> LPAREN expression RPAREN
+Rule 50    primary -> array_ref
+Rule 51    expression_list -> expression
+Rule 52    expression_list -> expression_list COMMA expression
+Rule 53    condition -> expression GT expression
+Rule 54    condition -> expression LT expression
+Rule 55    condition -> expression GE expression
+Rule 56    condition -> expression LE expression
+Rule 57    condition -> expression EQ expression
+Rule 58    condition -> expression NE expression
+Rule 59    condition -> condition AND condition
+Rule 60    condition -> condition OR condition
+Rule 61    condition -> NOT condition
+Rule 62    condition -> LPAREN condition RPAREN
+Rule 63    condition -> TRUE
+Rule 64    condition -> FALSE
+
+Terminals, with rules where they appear
+
+AND                  : 59
+CHARACTER            : 15
+COMMA                : 19 20 28 31 32 35 36 38 52
+CONTINUE             : 8
+DCOLON               : 10 11 12
+DIMENSION            : 12
+DIVIDE               : 44
+DO                   : 28
+ELSE                 : 27
+ENDDO                : 28
+ENDIF                : 26 27
+EQ                   : 57
+EQUALS               : 21 28
+EXIT                 : 9
+FALSE                : 64
+GE                   : 55
+GT                   : 53
+IDENTIFIER           : 10 11 12 18 20 22 24 25 28 37 38 48
+IF                   : 26 27
+INTEGER              : 13
+LE                   : 56
+LOGICAL              : 16
+LPAREN               : 11 12 24 25 26 27 49 62
+LT                   : 54
+MINUS                : 41
+NE                   : 58
+NOT                  : 61
+NUMBER               : 17 19 47
+OR                   : 60
+PLUS                 : 40
+POWER                : 46
+PRINT                : 31
+READ                 : 32
+REAL                 : 14
+RPAREN               : 11 12 24 25 26 27 49 62
+STRING               : 34 36
+THEN                 : 26 27
+TIMES                : 31 32 43
+TRUE                 : 63
+error                : 
+
+Nonterminals, with rules where they appear
+
+array_dims           : 11 12 19 20
+array_ref            : 23 50
+assignment           : 4
+condition            : 26 27 59 59 60 60 61 62
+declaration          : 3
+do_loop              : 6
+expression           : 21 24 28 28 33 35 40 41 49 51 52 53 53 54 54 55 55 56 56 57 57 58 58
+expression_list      : 25 52
+factor               : 42 43 44 46
+if_statement         : 5
+io_statement         : 7
+primary              : 45 46
+print_list           : 31 35 36
+program              : 2 0
+read_list            : 32 38
+statement            : 1 2 29 30
+statement_list       : 26 27 27 28 30
+target               : 21
+term                 : 39 40 41 43 44
+type                 : 10 11
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement
+    (2) program -> . program statement
+    (3) statement -> . declaration
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) statement -> . io_statement
+    (8) statement -> . CONTINUE
+    (9) statement -> . EXIT
+    (10) declaration -> . type DCOLON IDENTIFIER
+    (11) declaration -> . type DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (12) declaration -> . DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (21) assignment -> . target EQUALS expression
+    (26) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ENDIF
+    (27) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF
+    (28) do_loop -> . DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO
+    (31) io_statement -> . PRINT TIMES COMMA print_list
+    (32) io_statement -> . READ TIMES COMMA read_list
+    (13) type -> . INTEGER
+    (14) type -> . REAL
+    (15) type -> . CHARACTER
+    (16) type -> . LOGICAL
+    (22) target -> . IDENTIFIER
+    (23) target -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    CONTINUE        shift and go to state 8
+    EXIT            shift and go to state 9
+    DIMENSION       shift and go to state 12
+    IF              shift and go to state 14
+    DO              shift and go to state 15
+    PRINT           shift and go to state 16
+    READ            shift and go to state 17
+    INTEGER         shift and go to state 18
+    REAL            shift and go to state 19
+    CHARACTER       shift and go to state 20
+    LOGICAL         shift and go to state 21
+    IDENTIFIER      shift and go to state 11
+
+    program                        shift and go to state 1
+    statement                      shift and go to state 2
+    declaration                    shift and go to state 3
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+    io_statement                   shift and go to state 7
+    type                           shift and go to state 10
+    target                         shift and go to state 13
+    array_ref                      shift and go to state 22
+
+state 1
+
+    (0) S' -> program .
+    (2) program -> program . statement
+    (3) statement -> . declaration
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) statement -> . io_statement
+    (8) statement -> . CONTINUE
+    (9) statement -> . EXIT
+    (10) declaration -> . type DCOLON IDENTIFIER
+    (11) declaration -> . type DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (12) declaration -> . DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (21) assignment -> . target EQUALS expression
+    (26) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ENDIF
+    (27) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF
+    (28) do_loop -> . DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO
+    (31) io_statement -> . PRINT TIMES COMMA print_list
+    (32) io_statement -> . READ TIMES COMMA read_list
+    (13) type -> . INTEGER
+    (14) type -> . REAL
+    (15) type -> . CHARACTER
+    (16) type -> . LOGICAL
+    (22) target -> . IDENTIFIER
+    (23) target -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    CONTINUE        shift and go to state 8
+    EXIT            shift and go to state 9
+    DIMENSION       shift and go to state 12
+    IF              shift and go to state 14
+    DO              shift and go to state 15
+    PRINT           shift and go to state 16
+    READ            shift and go to state 17
+    INTEGER         shift and go to state 18
+    REAL            shift and go to state 19
+    CHARACTER       shift and go to state 20
+    LOGICAL         shift and go to state 21
+    IDENTIFIER      shift and go to state 11
+
+    statement                      shift and go to state 23
+    declaration                    shift and go to state 3
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+    io_statement                   shift and go to state 7
+    type                           shift and go to state 10
+    target                         shift and go to state 13
+    array_ref                      shift and go to state 22
+
+state 2
+
+    (1) program -> statement .
+
+    CONTINUE        reduce using rule 1 (program -> statement .)
+    EXIT            reduce using rule 1 (program -> statement .)
+    DIMENSION       reduce using rule 1 (program -> statement .)
+    IF              reduce using rule 1 (program -> statement .)
+    DO              reduce using rule 1 (program -> statement .)
+    PRINT           reduce using rule 1 (program -> statement .)
+    READ            reduce using rule 1 (program -> statement .)
+    INTEGER         reduce using rule 1 (program -> statement .)
+    REAL            reduce using rule 1 (program -> statement .)
+    CHARACTER       reduce using rule 1 (program -> statement .)
+    LOGICAL         reduce using rule 1 (program -> statement .)
+    IDENTIFIER      reduce using rule 1 (program -> statement .)
+    $end            reduce using rule 1 (program -> statement .)
+
+
+state 3
+
+    (3) statement -> declaration .
+
+    CONTINUE        reduce using rule 3 (statement -> declaration .)
+    EXIT            reduce using rule 3 (statement -> declaration .)
+    DIMENSION       reduce using rule 3 (statement -> declaration .)
+    IF              reduce using rule 3 (statement -> declaration .)
+    DO              reduce using rule 3 (statement -> declaration .)
+    PRINT           reduce using rule 3 (statement -> declaration .)
+    READ            reduce using rule 3 (statement -> declaration .)
+    INTEGER         reduce using rule 3 (statement -> declaration .)
+    REAL            reduce using rule 3 (statement -> declaration .)
+    CHARACTER       reduce using rule 3 (statement -> declaration .)
+    LOGICAL         reduce using rule 3 (statement -> declaration .)
+    IDENTIFIER      reduce using rule 3 (statement -> declaration .)
+    $end            reduce using rule 3 (statement -> declaration .)
+    ENDIF           reduce using rule 3 (statement -> declaration .)
+    ELSE            reduce using rule 3 (statement -> declaration .)
+    ENDDO           reduce using rule 3 (statement -> declaration .)
+
+
+state 4
+
+    (4) statement -> assignment .
+
+    CONTINUE        reduce using rule 4 (statement -> assignment .)
+    EXIT            reduce using rule 4 (statement -> assignment .)
+    DIMENSION       reduce using rule 4 (statement -> assignment .)
+    IF              reduce using rule 4 (statement -> assignment .)
+    DO              reduce using rule 4 (statement -> assignment .)
+    PRINT           reduce using rule 4 (statement -> assignment .)
+    READ            reduce using rule 4 (statement -> assignment .)
+    INTEGER         reduce using rule 4 (statement -> assignment .)
+    REAL            reduce using rule 4 (statement -> assignment .)
+    CHARACTER       reduce using rule 4 (statement -> assignment .)
+    LOGICAL         reduce using rule 4 (statement -> assignment .)
+    IDENTIFIER      reduce using rule 4 (statement -> assignment .)
+    $end            reduce using rule 4 (statement -> assignment .)
+    ENDIF           reduce using rule 4 (statement -> assignment .)
+    ELSE            reduce using rule 4 (statement -> assignment .)
+    ENDDO           reduce using rule 4 (statement -> assignment .)
+
+
+state 5
+
+    (5) statement -> if_statement .
+
+    CONTINUE        reduce using rule 5 (statement -> if_statement .)
+    EXIT            reduce using rule 5 (statement -> if_statement .)
+    DIMENSION       reduce using rule 5 (statement -> if_statement .)
+    IF              reduce using rule 5 (statement -> if_statement .)
+    DO              reduce using rule 5 (statement -> if_statement .)
+    PRINT           reduce using rule 5 (statement -> if_statement .)
+    READ            reduce using rule 5 (statement -> if_statement .)
+    INTEGER         reduce using rule 5 (statement -> if_statement .)
+    REAL            reduce using rule 5 (statement -> if_statement .)
+    CHARACTER       reduce using rule 5 (statement -> if_statement .)
+    LOGICAL         reduce using rule 5 (statement -> if_statement .)
+    IDENTIFIER      reduce using rule 5 (statement -> if_statement .)
+    $end            reduce using rule 5 (statement -> if_statement .)
+    ENDIF           reduce using rule 5 (statement -> if_statement .)
+    ELSE            reduce using rule 5 (statement -> if_statement .)
+    ENDDO           reduce using rule 5 (statement -> if_statement .)
+
+
+state 6
+
+    (6) statement -> do_loop .
+
+    CONTINUE        reduce using rule 6 (statement -> do_loop .)
+    EXIT            reduce using rule 6 (statement -> do_loop .)
+    DIMENSION       reduce using rule 6 (statement -> do_loop .)
+    IF              reduce using rule 6 (statement -> do_loop .)
+    DO              reduce using rule 6 (statement -> do_loop .)
+    PRINT           reduce using rule 6 (statement -> do_loop .)
+    READ            reduce using rule 6 (statement -> do_loop .)
+    INTEGER         reduce using rule 6 (statement -> do_loop .)
+    REAL            reduce using rule 6 (statement -> do_loop .)
+    CHARACTER       reduce using rule 6 (statement -> do_loop .)
+    LOGICAL         reduce using rule 6 (statement -> do_loop .)
+    IDENTIFIER      reduce using rule 6 (statement -> do_loop .)
+    $end            reduce using rule 6 (statement -> do_loop .)
+    ENDIF           reduce using rule 6 (statement -> do_loop .)
+    ELSE            reduce using rule 6 (statement -> do_loop .)
+    ENDDO           reduce using rule 6 (statement -> do_loop .)
+
+
+state 7
+
+    (7) statement -> io_statement .
+
+    CONTINUE        reduce using rule 7 (statement -> io_statement .)
+    EXIT            reduce using rule 7 (statement -> io_statement .)
+    DIMENSION       reduce using rule 7 (statement -> io_statement .)
+    IF              reduce using rule 7 (statement -> io_statement .)
+    DO              reduce using rule 7 (statement -> io_statement .)
+    PRINT           reduce using rule 7 (statement -> io_statement .)
+    READ            reduce using rule 7 (statement -> io_statement .)
+    INTEGER         reduce using rule 7 (statement -> io_statement .)
+    REAL            reduce using rule 7 (statement -> io_statement .)
+    CHARACTER       reduce using rule 7 (statement -> io_statement .)
+    LOGICAL         reduce using rule 7 (statement -> io_statement .)
+    IDENTIFIER      reduce using rule 7 (statement -> io_statement .)
+    $end            reduce using rule 7 (statement -> io_statement .)
+    ENDIF           reduce using rule 7 (statement -> io_statement .)
+    ELSE            reduce using rule 7 (statement -> io_statement .)
+    ENDDO           reduce using rule 7 (statement -> io_statement .)
+
+
+state 8
+
+    (8) statement -> CONTINUE .
+
+    CONTINUE        reduce using rule 8 (statement -> CONTINUE .)
+    EXIT            reduce using rule 8 (statement -> CONTINUE .)
+    DIMENSION       reduce using rule 8 (statement -> CONTINUE .)
+    IF              reduce using rule 8 (statement -> CONTINUE .)
+    DO              reduce using rule 8 (statement -> CONTINUE .)
+    PRINT           reduce using rule 8 (statement -> CONTINUE .)
+    READ            reduce using rule 8 (statement -> CONTINUE .)
+    INTEGER         reduce using rule 8 (statement -> CONTINUE .)
+    REAL            reduce using rule 8 (statement -> CONTINUE .)
+    CHARACTER       reduce using rule 8 (statement -> CONTINUE .)
+    LOGICAL         reduce using rule 8 (statement -> CONTINUE .)
+    IDENTIFIER      reduce using rule 8 (statement -> CONTINUE .)
+    $end            reduce using rule 8 (statement -> CONTINUE .)
+    ENDIF           reduce using rule 8 (statement -> CONTINUE .)
+    ELSE            reduce using rule 8 (statement -> CONTINUE .)
+    ENDDO           reduce using rule 8 (statement -> CONTINUE .)
+
+
+state 9
+
+    (9) statement -> EXIT .
+
+    CONTINUE        reduce using rule 9 (statement -> EXIT .)
+    EXIT            reduce using rule 9 (statement -> EXIT .)
+    DIMENSION       reduce using rule 9 (statement -> EXIT .)
+    IF              reduce using rule 9 (statement -> EXIT .)
+    DO              reduce using rule 9 (statement -> EXIT .)
+    PRINT           reduce using rule 9 (statement -> EXIT .)
+    READ            reduce using rule 9 (statement -> EXIT .)
+    INTEGER         reduce using rule 9 (statement -> EXIT .)
+    REAL            reduce using rule 9 (statement -> EXIT .)
+    CHARACTER       reduce using rule 9 (statement -> EXIT .)
+    LOGICAL         reduce using rule 9 (statement -> EXIT .)
+    IDENTIFIER      reduce using rule 9 (statement -> EXIT .)
+    $end            reduce using rule 9 (statement -> EXIT .)
+    ENDIF           reduce using rule 9 (statement -> EXIT .)
+    ELSE            reduce using rule 9 (statement -> EXIT .)
+    ENDDO           reduce using rule 9 (statement -> EXIT .)
+
+
+state 10
+
+    (10) declaration -> type . DCOLON IDENTIFIER
+    (11) declaration -> type . DCOLON IDENTIFIER LPAREN array_dims RPAREN
+
+    DCOLON          shift and go to state 24
+
+
+state 11
+
+    (22) target -> IDENTIFIER .
+    (24) array_ref -> IDENTIFIER . LPAREN expression RPAREN
+    (25) array_ref -> IDENTIFIER . LPAREN expression_list RPAREN
+
+    EQUALS          reduce using rule 22 (target -> IDENTIFIER .)
+    LPAREN          shift and go to state 25
+
+
+state 12
+
+    (12) declaration -> DIMENSION . DCOLON IDENTIFIER LPAREN array_dims RPAREN
+
+    DCOLON          shift and go to state 26
+
+
+state 13
+
+    (21) assignment -> target . EQUALS expression
+
+    EQUALS          shift and go to state 27
+
+
+state 14
+
+    (26) if_statement -> IF . LPAREN condition RPAREN THEN statement_list ENDIF
+    (27) if_statement -> IF . LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF
+
+    LPAREN          shift and go to state 28
+
+
+state 15
+
+    (28) do_loop -> DO . IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO
+
+    IDENTIFIER      shift and go to state 29
+
+
+state 16
+
+    (31) io_statement -> PRINT . TIMES COMMA print_list
+
+    TIMES           shift and go to state 30
+
+
+state 17
+
+    (32) io_statement -> READ . TIMES COMMA read_list
+
+    TIMES           shift and go to state 31
+
+
+state 18
+
+    (13) type -> INTEGER .
+
+    DCOLON          reduce using rule 13 (type -> INTEGER .)
+
+
+state 19
+
+    (14) type -> REAL .
+
+    DCOLON          reduce using rule 14 (type -> REAL .)
+
+
+state 20
+
+    (15) type -> CHARACTER .
+
+    DCOLON          reduce using rule 15 (type -> CHARACTER .)
+
+
+state 21
+
+    (16) type -> LOGICAL .
+
+    DCOLON          reduce using rule 16 (type -> LOGICAL .)
+
+
+state 22
+
+    (23) target -> array_ref .
+
+    EQUALS          reduce using rule 23 (target -> array_ref .)
+
+
+state 23
+
+    (2) program -> program statement .
+
+    CONTINUE        reduce using rule 2 (program -> program statement .)
+    EXIT            reduce using rule 2 (program -> program statement .)
+    DIMENSION       reduce using rule 2 (program -> program statement .)
+    IF              reduce using rule 2 (program -> program statement .)
+    DO              reduce using rule 2 (program -> program statement .)
+    PRINT           reduce using rule 2 (program -> program statement .)
+    READ            reduce using rule 2 (program -> program statement .)
+    INTEGER         reduce using rule 2 (program -> program statement .)
+    REAL            reduce using rule 2 (program -> program statement .)
+    CHARACTER       reduce using rule 2 (program -> program statement .)
+    LOGICAL         reduce using rule 2 (program -> program statement .)
+    IDENTIFIER      reduce using rule 2 (program -> program statement .)
+    $end            reduce using rule 2 (program -> program statement .)
+
+
+state 24
+
+    (10) declaration -> type DCOLON . IDENTIFIER
+    (11) declaration -> type DCOLON . IDENTIFIER LPAREN array_dims RPAREN
+
+    IDENTIFIER      shift and go to state 32
+
+
+state 25
+
+    (24) array_ref -> IDENTIFIER LPAREN . expression RPAREN
+    (25) array_ref -> IDENTIFIER LPAREN . expression_list RPAREN
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (51) expression_list -> . expression
+    (52) expression_list -> . expression_list COMMA expression
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 35
+    expression_list                shift and go to state 36
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 26
+
+    (12) declaration -> DIMENSION DCOLON . IDENTIFIER LPAREN array_dims RPAREN
+
+    IDENTIFIER      shift and go to state 42
+
+
+state 27
+
+    (21) assignment -> target EQUALS . expression
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 43
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 28
+
+    (26) if_statement -> IF LPAREN . condition RPAREN THEN statement_list ENDIF
+    (27) if_statement -> IF LPAREN . condition RPAREN THEN statement_list ELSE statement_list ENDIF
+    (53) condition -> . expression GT expression
+    (54) condition -> . expression LT expression
+    (55) condition -> . expression GE expression
+    (56) condition -> . expression LE expression
+    (57) condition -> . expression EQ expression
+    (58) condition -> . expression NE expression
+    (59) condition -> . condition AND condition
+    (60) condition -> . condition OR condition
+    (61) condition -> . NOT condition
+    (62) condition -> . LPAREN condition RPAREN
+    (63) condition -> . TRUE
+    (64) condition -> . FALSE
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NOT             shift and go to state 47
+    LPAREN          shift and go to state 44
+    TRUE            shift and go to state 48
+    FALSE           shift and go to state 49
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+
+    condition                      shift and go to state 45
+    expression                     shift and go to state 46
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 29
+
+    (28) do_loop -> DO IDENTIFIER . EQUALS expression COMMA expression statement_list ENDDO
+
+    EQUALS          shift and go to state 50
+
+
+state 30
+
+    (31) io_statement -> PRINT TIMES . COMMA print_list
+
+    COMMA           shift and go to state 51
+
+
+state 31
+
+    (32) io_statement -> READ TIMES . COMMA read_list
+
+    COMMA           shift and go to state 52
+
+
+state 32
+
+    (10) declaration -> type DCOLON IDENTIFIER .
+    (11) declaration -> type DCOLON IDENTIFIER . LPAREN array_dims RPAREN
+
+    CONTINUE        reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    EXIT            reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    DIMENSION       reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    IF              reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    DO              reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    PRINT           reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    READ            reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    INTEGER         reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    REAL            reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    CHARACTER       reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    LOGICAL         reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    IDENTIFIER      reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    $end            reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    ENDIF           reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    ELSE            reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    ENDDO           reduce using rule 10 (declaration -> type DCOLON IDENTIFIER .)
+    LPAREN          shift and go to state 53
+
+
+state 33
+
+    (48) primary -> IDENTIFIER .
+    (24) array_ref -> IDENTIFIER . LPAREN expression RPAREN
+    (25) array_ref -> IDENTIFIER . LPAREN expression_list RPAREN
+
+    POWER           reduce using rule 48 (primary -> IDENTIFIER .)
+    TIMES           reduce using rule 48 (primary -> IDENTIFIER .)
+    DIVIDE          reduce using rule 48 (primary -> IDENTIFIER .)
+    RPAREN          reduce using rule 48 (primary -> IDENTIFIER .)
+    PLUS            reduce using rule 48 (primary -> IDENTIFIER .)
+    MINUS           reduce using rule 48 (primary -> IDENTIFIER .)
+    COMMA           reduce using rule 48 (primary -> IDENTIFIER .)
+    CONTINUE        reduce using rule 48 (primary -> IDENTIFIER .)
+    EXIT            reduce using rule 48 (primary -> IDENTIFIER .)
+    DIMENSION       reduce using rule 48 (primary -> IDENTIFIER .)
+    IF              reduce using rule 48 (primary -> IDENTIFIER .)
+    DO              reduce using rule 48 (primary -> IDENTIFIER .)
+    PRINT           reduce using rule 48 (primary -> IDENTIFIER .)
+    READ            reduce using rule 48 (primary -> IDENTIFIER .)
+    INTEGER         reduce using rule 48 (primary -> IDENTIFIER .)
+    REAL            reduce using rule 48 (primary -> IDENTIFIER .)
+    CHARACTER       reduce using rule 48 (primary -> IDENTIFIER .)
+    LOGICAL         reduce using rule 48 (primary -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 48 (primary -> IDENTIFIER .)
+    $end            reduce using rule 48 (primary -> IDENTIFIER .)
+    ENDIF           reduce using rule 48 (primary -> IDENTIFIER .)
+    ELSE            reduce using rule 48 (primary -> IDENTIFIER .)
+    ENDDO           reduce using rule 48 (primary -> IDENTIFIER .)
+    GT              reduce using rule 48 (primary -> IDENTIFIER .)
+    LT              reduce using rule 48 (primary -> IDENTIFIER .)
+    GE              reduce using rule 48 (primary -> IDENTIFIER .)
+    LE              reduce using rule 48 (primary -> IDENTIFIER .)
+    EQ              reduce using rule 48 (primary -> IDENTIFIER .)
+    NE              reduce using rule 48 (primary -> IDENTIFIER .)
+    AND             reduce using rule 48 (primary -> IDENTIFIER .)
+    OR              reduce using rule 48 (primary -> IDENTIFIER .)
+    LPAREN          shift and go to state 25
+
+
+state 34
+
+    (49) primary -> LPAREN . expression RPAREN
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 54
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 35
+
+    (24) array_ref -> IDENTIFIER LPAREN expression . RPAREN
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+    (51) expression_list -> expression .
+
+  ! shift/reduce conflict for RPAREN resolved as shift
+    RPAREN          shift and go to state 55
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+    COMMA           reduce using rule 51 (expression_list -> expression .)
+
+  ! RPAREN          [ reduce using rule 51 (expression_list -> expression .) ]
+
+
+state 36
+
+    (25) array_ref -> IDENTIFIER LPAREN expression_list . RPAREN
+    (52) expression_list -> expression_list . COMMA expression
+
+    RPAREN          shift and go to state 58
+    COMMA           shift and go to state 59
+
+
+state 37
+
+    (39) expression -> term .
+    (43) term -> term . TIMES factor
+    (44) term -> term . DIVIDE factor
+
+    RPAREN          reduce using rule 39 (expression -> term .)
+    PLUS            reduce using rule 39 (expression -> term .)
+    MINUS           reduce using rule 39 (expression -> term .)
+    COMMA           reduce using rule 39 (expression -> term .)
+    CONTINUE        reduce using rule 39 (expression -> term .)
+    EXIT            reduce using rule 39 (expression -> term .)
+    DIMENSION       reduce using rule 39 (expression -> term .)
+    IF              reduce using rule 39 (expression -> term .)
+    DO              reduce using rule 39 (expression -> term .)
+    PRINT           reduce using rule 39 (expression -> term .)
+    READ            reduce using rule 39 (expression -> term .)
+    INTEGER         reduce using rule 39 (expression -> term .)
+    REAL            reduce using rule 39 (expression -> term .)
+    CHARACTER       reduce using rule 39 (expression -> term .)
+    LOGICAL         reduce using rule 39 (expression -> term .)
+    IDENTIFIER      reduce using rule 39 (expression -> term .)
+    $end            reduce using rule 39 (expression -> term .)
+    ENDIF           reduce using rule 39 (expression -> term .)
+    ELSE            reduce using rule 39 (expression -> term .)
+    ENDDO           reduce using rule 39 (expression -> term .)
+    GT              reduce using rule 39 (expression -> term .)
+    LT              reduce using rule 39 (expression -> term .)
+    GE              reduce using rule 39 (expression -> term .)
+    LE              reduce using rule 39 (expression -> term .)
+    EQ              reduce using rule 39 (expression -> term .)
+    NE              reduce using rule 39 (expression -> term .)
+    AND             reduce using rule 39 (expression -> term .)
+    OR              reduce using rule 39 (expression -> term .)
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+
+
+state 38
+
+    (42) term -> factor .
+    (46) factor -> factor . POWER primary
+
+    TIMES           reduce using rule 42 (term -> factor .)
+    DIVIDE          reduce using rule 42 (term -> factor .)
+    RPAREN          reduce using rule 42 (term -> factor .)
+    PLUS            reduce using rule 42 (term -> factor .)
+    MINUS           reduce using rule 42 (term -> factor .)
+    COMMA           reduce using rule 42 (term -> factor .)
+    CONTINUE        reduce using rule 42 (term -> factor .)
+    EXIT            reduce using rule 42 (term -> factor .)
+    DIMENSION       reduce using rule 42 (term -> factor .)
+    IF              reduce using rule 42 (term -> factor .)
+    DO              reduce using rule 42 (term -> factor .)
+    PRINT           reduce using rule 42 (term -> factor .)
+    READ            reduce using rule 42 (term -> factor .)
+    INTEGER         reduce using rule 42 (term -> factor .)
+    REAL            reduce using rule 42 (term -> factor .)
+    CHARACTER       reduce using rule 42 (term -> factor .)
+    LOGICAL         reduce using rule 42 (term -> factor .)
+    IDENTIFIER      reduce using rule 42 (term -> factor .)
+    $end            reduce using rule 42 (term -> factor .)
+    ENDIF           reduce using rule 42 (term -> factor .)
+    ELSE            reduce using rule 42 (term -> factor .)
+    ENDDO           reduce using rule 42 (term -> factor .)
+    GT              reduce using rule 42 (term -> factor .)
+    LT              reduce using rule 42 (term -> factor .)
+    GE              reduce using rule 42 (term -> factor .)
+    LE              reduce using rule 42 (term -> factor .)
+    EQ              reduce using rule 42 (term -> factor .)
+    NE              reduce using rule 42 (term -> factor .)
+    AND             reduce using rule 42 (term -> factor .)
+    OR              reduce using rule 42 (term -> factor .)
+    POWER           shift and go to state 62
+
+
+state 39
+
+    (45) factor -> primary .
+
+    POWER           reduce using rule 45 (factor -> primary .)
+    TIMES           reduce using rule 45 (factor -> primary .)
+    DIVIDE          reduce using rule 45 (factor -> primary .)
+    RPAREN          reduce using rule 45 (factor -> primary .)
+    PLUS            reduce using rule 45 (factor -> primary .)
+    MINUS           reduce using rule 45 (factor -> primary .)
+    COMMA           reduce using rule 45 (factor -> primary .)
+    CONTINUE        reduce using rule 45 (factor -> primary .)
+    EXIT            reduce using rule 45 (factor -> primary .)
+    DIMENSION       reduce using rule 45 (factor -> primary .)
+    IF              reduce using rule 45 (factor -> primary .)
+    DO              reduce using rule 45 (factor -> primary .)
+    PRINT           reduce using rule 45 (factor -> primary .)
+    READ            reduce using rule 45 (factor -> primary .)
+    INTEGER         reduce using rule 45 (factor -> primary .)
+    REAL            reduce using rule 45 (factor -> primary .)
+    CHARACTER       reduce using rule 45 (factor -> primary .)
+    LOGICAL         reduce using rule 45 (factor -> primary .)
+    IDENTIFIER      reduce using rule 45 (factor -> primary .)
+    $end            reduce using rule 45 (factor -> primary .)
+    ENDIF           reduce using rule 45 (factor -> primary .)
+    ELSE            reduce using rule 45 (factor -> primary .)
+    ENDDO           reduce using rule 45 (factor -> primary .)
+    GT              reduce using rule 45 (factor -> primary .)
+    LT              reduce using rule 45 (factor -> primary .)
+    GE              reduce using rule 45 (factor -> primary .)
+    LE              reduce using rule 45 (factor -> primary .)
+    EQ              reduce using rule 45 (factor -> primary .)
+    NE              reduce using rule 45 (factor -> primary .)
+    AND             reduce using rule 45 (factor -> primary .)
+    OR              reduce using rule 45 (factor -> primary .)
+
+
+state 40
+
+    (47) primary -> NUMBER .
+
+    POWER           reduce using rule 47 (primary -> NUMBER .)
+    TIMES           reduce using rule 47 (primary -> NUMBER .)
+    DIVIDE          reduce using rule 47 (primary -> NUMBER .)
+    RPAREN          reduce using rule 47 (primary -> NUMBER .)
+    PLUS            reduce using rule 47 (primary -> NUMBER .)
+    MINUS           reduce using rule 47 (primary -> NUMBER .)
+    COMMA           reduce using rule 47 (primary -> NUMBER .)
+    CONTINUE        reduce using rule 47 (primary -> NUMBER .)
+    EXIT            reduce using rule 47 (primary -> NUMBER .)
+    DIMENSION       reduce using rule 47 (primary -> NUMBER .)
+    IF              reduce using rule 47 (primary -> NUMBER .)
+    DO              reduce using rule 47 (primary -> NUMBER .)
+    PRINT           reduce using rule 47 (primary -> NUMBER .)
+    READ            reduce using rule 47 (primary -> NUMBER .)
+    INTEGER         reduce using rule 47 (primary -> NUMBER .)
+    REAL            reduce using rule 47 (primary -> NUMBER .)
+    CHARACTER       reduce using rule 47 (primary -> NUMBER .)
+    LOGICAL         reduce using rule 47 (primary -> NUMBER .)
+    IDENTIFIER      reduce using rule 47 (primary -> NUMBER .)
+    $end            reduce using rule 47 (primary -> NUMBER .)
+    ENDIF           reduce using rule 47 (primary -> NUMBER .)
+    ELSE            reduce using rule 47 (primary -> NUMBER .)
+    ENDDO           reduce using rule 47 (primary -> NUMBER .)
+    GT              reduce using rule 47 (primary -> NUMBER .)
+    LT              reduce using rule 47 (primary -> NUMBER .)
+    GE              reduce using rule 47 (primary -> NUMBER .)
+    LE              reduce using rule 47 (primary -> NUMBER .)
+    EQ              reduce using rule 47 (primary -> NUMBER .)
+    NE              reduce using rule 47 (primary -> NUMBER .)
+    AND             reduce using rule 47 (primary -> NUMBER .)
+    OR              reduce using rule 47 (primary -> NUMBER .)
+
+
+state 41
+
+    (50) primary -> array_ref .
+
+    POWER           reduce using rule 50 (primary -> array_ref .)
+    TIMES           reduce using rule 50 (primary -> array_ref .)
+    DIVIDE          reduce using rule 50 (primary -> array_ref .)
+    RPAREN          reduce using rule 50 (primary -> array_ref .)
+    PLUS            reduce using rule 50 (primary -> array_ref .)
+    MINUS           reduce using rule 50 (primary -> array_ref .)
+    COMMA           reduce using rule 50 (primary -> array_ref .)
+    CONTINUE        reduce using rule 50 (primary -> array_ref .)
+    EXIT            reduce using rule 50 (primary -> array_ref .)
+    DIMENSION       reduce using rule 50 (primary -> array_ref .)
+    IF              reduce using rule 50 (primary -> array_ref .)
+    DO              reduce using rule 50 (primary -> array_ref .)
+    PRINT           reduce using rule 50 (primary -> array_ref .)
+    READ            reduce using rule 50 (primary -> array_ref .)
+    INTEGER         reduce using rule 50 (primary -> array_ref .)
+    REAL            reduce using rule 50 (primary -> array_ref .)
+    CHARACTER       reduce using rule 50 (primary -> array_ref .)
+    LOGICAL         reduce using rule 50 (primary -> array_ref .)
+    IDENTIFIER      reduce using rule 50 (primary -> array_ref .)
+    $end            reduce using rule 50 (primary -> array_ref .)
+    ENDIF           reduce using rule 50 (primary -> array_ref .)
+    ELSE            reduce using rule 50 (primary -> array_ref .)
+    ENDDO           reduce using rule 50 (primary -> array_ref .)
+    GT              reduce using rule 50 (primary -> array_ref .)
+    LT              reduce using rule 50 (primary -> array_ref .)
+    GE              reduce using rule 50 (primary -> array_ref .)
+    LE              reduce using rule 50 (primary -> array_ref .)
+    EQ              reduce using rule 50 (primary -> array_ref .)
+    NE              reduce using rule 50 (primary -> array_ref .)
+    AND             reduce using rule 50 (primary -> array_ref .)
+    OR              reduce using rule 50 (primary -> array_ref .)
+
+
+state 42
+
+    (12) declaration -> DIMENSION DCOLON IDENTIFIER . LPAREN array_dims RPAREN
+
+    LPAREN          shift and go to state 63
+
+
+state 43
+
+    (21) assignment -> target EQUALS expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    CONTINUE        reduce using rule 21 (assignment -> target EQUALS expression .)
+    EXIT            reduce using rule 21 (assignment -> target EQUALS expression .)
+    DIMENSION       reduce using rule 21 (assignment -> target EQUALS expression .)
+    IF              reduce using rule 21 (assignment -> target EQUALS expression .)
+    DO              reduce using rule 21 (assignment -> target EQUALS expression .)
+    PRINT           reduce using rule 21 (assignment -> target EQUALS expression .)
+    READ            reduce using rule 21 (assignment -> target EQUALS expression .)
+    INTEGER         reduce using rule 21 (assignment -> target EQUALS expression .)
+    REAL            reduce using rule 21 (assignment -> target EQUALS expression .)
+    CHARACTER       reduce using rule 21 (assignment -> target EQUALS expression .)
+    LOGICAL         reduce using rule 21 (assignment -> target EQUALS expression .)
+    IDENTIFIER      reduce using rule 21 (assignment -> target EQUALS expression .)
+    $end            reduce using rule 21 (assignment -> target EQUALS expression .)
+    ENDIF           reduce using rule 21 (assignment -> target EQUALS expression .)
+    ELSE            reduce using rule 21 (assignment -> target EQUALS expression .)
+    ENDDO           reduce using rule 21 (assignment -> target EQUALS expression .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 44
+
+    (62) condition -> LPAREN . condition RPAREN
+    (49) primary -> LPAREN . expression RPAREN
+    (53) condition -> . expression GT expression
+    (54) condition -> . expression LT expression
+    (55) condition -> . expression GE expression
+    (56) condition -> . expression LE expression
+    (57) condition -> . expression EQ expression
+    (58) condition -> . expression NE expression
+    (59) condition -> . condition AND condition
+    (60) condition -> . condition OR condition
+    (61) condition -> . NOT condition
+    (62) condition -> . LPAREN condition RPAREN
+    (63) condition -> . TRUE
+    (64) condition -> . FALSE
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NOT             shift and go to state 47
+    LPAREN          shift and go to state 44
+    TRUE            shift and go to state 48
+    FALSE           shift and go to state 49
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+
+    condition                      shift and go to state 64
+    expression                     shift and go to state 65
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 45
+
+    (26) if_statement -> IF LPAREN condition . RPAREN THEN statement_list ENDIF
+    (27) if_statement -> IF LPAREN condition . RPAREN THEN statement_list ELSE statement_list ENDIF
+    (59) condition -> condition . AND condition
+    (60) condition -> condition . OR condition
+
+    RPAREN          shift and go to state 66
+    AND             shift and go to state 67
+    OR              shift and go to state 68
+
+
+state 46
+
+    (53) condition -> expression . GT expression
+    (54) condition -> expression . LT expression
+    (55) condition -> expression . GE expression
+    (56) condition -> expression . LE expression
+    (57) condition -> expression . EQ expression
+    (58) condition -> expression . NE expression
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    GT              shift and go to state 69
+    LT              shift and go to state 70
+    GE              shift and go to state 71
+    LE              shift and go to state 72
+    EQ              shift and go to state 73
+    NE              shift and go to state 74
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 47
+
+    (61) condition -> NOT . condition
+    (53) condition -> . expression GT expression
+    (54) condition -> . expression LT expression
+    (55) condition -> . expression GE expression
+    (56) condition -> . expression LE expression
+    (57) condition -> . expression EQ expression
+    (58) condition -> . expression NE expression
+    (59) condition -> . condition AND condition
+    (60) condition -> . condition OR condition
+    (61) condition -> . NOT condition
+    (62) condition -> . LPAREN condition RPAREN
+    (63) condition -> . TRUE
+    (64) condition -> . FALSE
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NOT             shift and go to state 47
+    LPAREN          shift and go to state 44
+    TRUE            shift and go to state 48
+    FALSE           shift and go to state 49
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+
+    condition                      shift and go to state 75
+    expression                     shift and go to state 46
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 48
+
+    (63) condition -> TRUE .
+
+    RPAREN          reduce using rule 63 (condition -> TRUE .)
+    AND             reduce using rule 63 (condition -> TRUE .)
+    OR              reduce using rule 63 (condition -> TRUE .)
+
+
+state 49
+
+    (64) condition -> FALSE .
+
+    RPAREN          reduce using rule 64 (condition -> FALSE .)
+    AND             reduce using rule 64 (condition -> FALSE .)
+    OR              reduce using rule 64 (condition -> FALSE .)
+
+
+state 50
+
+    (28) do_loop -> DO IDENTIFIER EQUALS . expression COMMA expression statement_list ENDDO
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 76
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 51
+
+    (31) io_statement -> PRINT TIMES COMMA . print_list
+    (33) print_list -> . expression
+    (34) print_list -> . STRING
+    (35) print_list -> . print_list COMMA expression
+    (36) print_list -> . print_list COMMA STRING
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    STRING          shift and go to state 79
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    print_list                     shift and go to state 77
+    expression                     shift and go to state 78
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 52
+
+    (32) io_statement -> READ TIMES COMMA . read_list
+    (37) read_list -> . IDENTIFIER
+    (38) read_list -> . read_list COMMA IDENTIFIER
+
+    IDENTIFIER      shift and go to state 81
+
+    read_list                      shift and go to state 80
+
+state 53
+
+    (11) declaration -> type DCOLON IDENTIFIER LPAREN . array_dims RPAREN
+    (17) array_dims -> . NUMBER
+    (18) array_dims -> . IDENTIFIER
+    (19) array_dims -> . array_dims COMMA NUMBER
+    (20) array_dims -> . array_dims COMMA IDENTIFIER
+
+    NUMBER          shift and go to state 84
+    IDENTIFIER      shift and go to state 82
+
+    array_dims                     shift and go to state 83
+
+state 54
+
+    (49) primary -> LPAREN expression . RPAREN
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 85
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 55
+
+    (24) array_ref -> IDENTIFIER LPAREN expression RPAREN .
+
+    EQUALS          reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    POWER           reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    TIMES           reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    PLUS            reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    MINUS           reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    COMMA           reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    CONTINUE        reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    EXIT            reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    DIMENSION       reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    IF              reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    DO              reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    PRINT           reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    READ            reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    INTEGER         reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    REAL            reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    CHARACTER       reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    LOGICAL         reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    IDENTIFIER      reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    $end            reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    ENDIF           reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    ELSE            reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    ENDDO           reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    GT              reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    LT              reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    GE              reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    LE              reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    EQ              reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    NE              reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    AND             reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+    OR              reduce using rule 24 (array_ref -> IDENTIFIER LPAREN expression RPAREN .)
+
+
+state 56
+
+    (40) expression -> expression PLUS . term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    term                           shift and go to state 86
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 57
+
+    (41) expression -> expression MINUS . term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    term                           shift and go to state 87
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 58
+
+    (25) array_ref -> IDENTIFIER LPAREN expression_list RPAREN .
+
+    EQUALS          reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    POWER           reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    TIMES           reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    DIVIDE          reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    RPAREN          reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    PLUS            reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    MINUS           reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    COMMA           reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    CONTINUE        reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    EXIT            reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    DIMENSION       reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    IF              reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    DO              reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    PRINT           reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    READ            reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    INTEGER         reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    REAL            reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    CHARACTER       reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    LOGICAL         reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    IDENTIFIER      reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    $end            reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    ENDIF           reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    ELSE            reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    ENDDO           reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    GT              reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    LT              reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    GE              reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    LE              reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    EQ              reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    NE              reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    AND             reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+    OR              reduce using rule 25 (array_ref -> IDENTIFIER LPAREN expression_list RPAREN .)
+
+
+state 59
+
+    (52) expression_list -> expression_list COMMA . expression
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 88
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 60
+
+    (43) term -> term TIMES . factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    factor                         shift and go to state 89
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 61
+
+    (44) term -> term DIVIDE . factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    factor                         shift and go to state 90
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 62
+
+    (46) factor -> factor POWER . primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    primary                        shift and go to state 91
+    array_ref                      shift and go to state 41
+
+state 63
+
+    (12) declaration -> DIMENSION DCOLON IDENTIFIER LPAREN . array_dims RPAREN
+    (17) array_dims -> . NUMBER
+    (18) array_dims -> . IDENTIFIER
+    (19) array_dims -> . array_dims COMMA NUMBER
+    (20) array_dims -> . array_dims COMMA IDENTIFIER
+
+    NUMBER          shift and go to state 84
+    IDENTIFIER      shift and go to state 82
+
+    array_dims                     shift and go to state 92
+
+state 64
+
+    (62) condition -> LPAREN condition . RPAREN
+    (59) condition -> condition . AND condition
+    (60) condition -> condition . OR condition
+
+    RPAREN          shift and go to state 93
+    AND             shift and go to state 67
+    OR              shift and go to state 68
+
+
+state 65
+
+    (49) primary -> LPAREN expression . RPAREN
+    (53) condition -> expression . GT expression
+    (54) condition -> expression . LT expression
+    (55) condition -> expression . GE expression
+    (56) condition -> expression . LE expression
+    (57) condition -> expression . EQ expression
+    (58) condition -> expression . NE expression
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 85
+    GT              shift and go to state 69
+    LT              shift and go to state 70
+    GE              shift and go to state 71
+    LE              shift and go to state 72
+    EQ              shift and go to state 73
+    NE              shift and go to state 74
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 66
+
+    (26) if_statement -> IF LPAREN condition RPAREN . THEN statement_list ENDIF
+    (27) if_statement -> IF LPAREN condition RPAREN . THEN statement_list ELSE statement_list ENDIF
+
+    THEN            shift and go to state 94
+
+
+state 67
+
+    (59) condition -> condition AND . condition
+    (53) condition -> . expression GT expression
+    (54) condition -> . expression LT expression
+    (55) condition -> . expression GE expression
+    (56) condition -> . expression LE expression
+    (57) condition -> . expression EQ expression
+    (58) condition -> . expression NE expression
+    (59) condition -> . condition AND condition
+    (60) condition -> . condition OR condition
+    (61) condition -> . NOT condition
+    (62) condition -> . LPAREN condition RPAREN
+    (63) condition -> . TRUE
+    (64) condition -> . FALSE
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NOT             shift and go to state 47
+    LPAREN          shift and go to state 44
+    TRUE            shift and go to state 48
+    FALSE           shift and go to state 49
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+
+    condition                      shift and go to state 95
+    expression                     shift and go to state 46
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 68
+
+    (60) condition -> condition OR . condition
+    (53) condition -> . expression GT expression
+    (54) condition -> . expression LT expression
+    (55) condition -> . expression GE expression
+    (56) condition -> . expression LE expression
+    (57) condition -> . expression EQ expression
+    (58) condition -> . expression NE expression
+    (59) condition -> . condition AND condition
+    (60) condition -> . condition OR condition
+    (61) condition -> . NOT condition
+    (62) condition -> . LPAREN condition RPAREN
+    (63) condition -> . TRUE
+    (64) condition -> . FALSE
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NOT             shift and go to state 47
+    LPAREN          shift and go to state 44
+    TRUE            shift and go to state 48
+    FALSE           shift and go to state 49
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+
+    condition                      shift and go to state 96
+    expression                     shift and go to state 46
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 69
+
+    (53) condition -> expression GT . expression
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 97
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 70
+
+    (54) condition -> expression LT . expression
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 98
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 71
+
+    (55) condition -> expression GE . expression
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 99
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 72
+
+    (56) condition -> expression LE . expression
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 100
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 73
+
+    (57) condition -> expression EQ . expression
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 101
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 74
+
+    (58) condition -> expression NE . expression
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 102
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 75
+
+    (61) condition -> NOT condition .
+    (59) condition -> condition . AND condition
+    (60) condition -> condition . OR condition
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    RPAREN          reduce using rule 61 (condition -> NOT condition .)
+    AND             shift and go to state 67
+    OR              shift and go to state 68
+
+  ! AND             [ reduce using rule 61 (condition -> NOT condition .) ]
+  ! OR              [ reduce using rule 61 (condition -> NOT condition .) ]
+
+
+state 76
+
+    (28) do_loop -> DO IDENTIFIER EQUALS expression . COMMA expression statement_list ENDDO
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    COMMA           shift and go to state 103
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 77
+
+    (31) io_statement -> PRINT TIMES COMMA print_list .
+    (35) print_list -> print_list . COMMA expression
+    (36) print_list -> print_list . COMMA STRING
+
+    CONTINUE        reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    EXIT            reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    DIMENSION       reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    IF              reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    DO              reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    PRINT           reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    READ            reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    INTEGER         reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    REAL            reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    CHARACTER       reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    LOGICAL         reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    IDENTIFIER      reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    $end            reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    ENDIF           reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    ELSE            reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    ENDDO           reduce using rule 31 (io_statement -> PRINT TIMES COMMA print_list .)
+    COMMA           shift and go to state 104
+
+
+state 78
+
+    (33) print_list -> expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    COMMA           reduce using rule 33 (print_list -> expression .)
+    CONTINUE        reduce using rule 33 (print_list -> expression .)
+    EXIT            reduce using rule 33 (print_list -> expression .)
+    DIMENSION       reduce using rule 33 (print_list -> expression .)
+    IF              reduce using rule 33 (print_list -> expression .)
+    DO              reduce using rule 33 (print_list -> expression .)
+    PRINT           reduce using rule 33 (print_list -> expression .)
+    READ            reduce using rule 33 (print_list -> expression .)
+    INTEGER         reduce using rule 33 (print_list -> expression .)
+    REAL            reduce using rule 33 (print_list -> expression .)
+    CHARACTER       reduce using rule 33 (print_list -> expression .)
+    LOGICAL         reduce using rule 33 (print_list -> expression .)
+    IDENTIFIER      reduce using rule 33 (print_list -> expression .)
+    $end            reduce using rule 33 (print_list -> expression .)
+    ENDIF           reduce using rule 33 (print_list -> expression .)
+    ELSE            reduce using rule 33 (print_list -> expression .)
+    ENDDO           reduce using rule 33 (print_list -> expression .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 79
+
+    (34) print_list -> STRING .
+
+    COMMA           reduce using rule 34 (print_list -> STRING .)
+    CONTINUE        reduce using rule 34 (print_list -> STRING .)
+    EXIT            reduce using rule 34 (print_list -> STRING .)
+    DIMENSION       reduce using rule 34 (print_list -> STRING .)
+    IF              reduce using rule 34 (print_list -> STRING .)
+    DO              reduce using rule 34 (print_list -> STRING .)
+    PRINT           reduce using rule 34 (print_list -> STRING .)
+    READ            reduce using rule 34 (print_list -> STRING .)
+    INTEGER         reduce using rule 34 (print_list -> STRING .)
+    REAL            reduce using rule 34 (print_list -> STRING .)
+    CHARACTER       reduce using rule 34 (print_list -> STRING .)
+    LOGICAL         reduce using rule 34 (print_list -> STRING .)
+    IDENTIFIER      reduce using rule 34 (print_list -> STRING .)
+    $end            reduce using rule 34 (print_list -> STRING .)
+    ENDIF           reduce using rule 34 (print_list -> STRING .)
+    ELSE            reduce using rule 34 (print_list -> STRING .)
+    ENDDO           reduce using rule 34 (print_list -> STRING .)
+
+
+state 80
+
+    (32) io_statement -> READ TIMES COMMA read_list .
+    (38) read_list -> read_list . COMMA IDENTIFIER
+
+    CONTINUE        reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    EXIT            reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    DIMENSION       reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    IF              reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    DO              reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    PRINT           reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    READ            reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    INTEGER         reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    REAL            reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    CHARACTER       reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    LOGICAL         reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    IDENTIFIER      reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    $end            reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    ENDIF           reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    ELSE            reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    ENDDO           reduce using rule 32 (io_statement -> READ TIMES COMMA read_list .)
+    COMMA           shift and go to state 105
+
+
+state 81
+
+    (37) read_list -> IDENTIFIER .
+
+    COMMA           reduce using rule 37 (read_list -> IDENTIFIER .)
+    CONTINUE        reduce using rule 37 (read_list -> IDENTIFIER .)
+    EXIT            reduce using rule 37 (read_list -> IDENTIFIER .)
+    DIMENSION       reduce using rule 37 (read_list -> IDENTIFIER .)
+    IF              reduce using rule 37 (read_list -> IDENTIFIER .)
+    DO              reduce using rule 37 (read_list -> IDENTIFIER .)
+    PRINT           reduce using rule 37 (read_list -> IDENTIFIER .)
+    READ            reduce using rule 37 (read_list -> IDENTIFIER .)
+    INTEGER         reduce using rule 37 (read_list -> IDENTIFIER .)
+    REAL            reduce using rule 37 (read_list -> IDENTIFIER .)
+    CHARACTER       reduce using rule 37 (read_list -> IDENTIFIER .)
+    LOGICAL         reduce using rule 37 (read_list -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 37 (read_list -> IDENTIFIER .)
+    $end            reduce using rule 37 (read_list -> IDENTIFIER .)
+    ENDIF           reduce using rule 37 (read_list -> IDENTIFIER .)
+    ELSE            reduce using rule 37 (read_list -> IDENTIFIER .)
+    ENDDO           reduce using rule 37 (read_list -> IDENTIFIER .)
+
+
+state 82
+
+    (18) array_dims -> IDENTIFIER .
+
+    RPAREN          reduce using rule 18 (array_dims -> IDENTIFIER .)
+    COMMA           reduce using rule 18 (array_dims -> IDENTIFIER .)
+
+
+state 83
+
+    (11) declaration -> type DCOLON IDENTIFIER LPAREN array_dims . RPAREN
+    (19) array_dims -> array_dims . COMMA NUMBER
+    (20) array_dims -> array_dims . COMMA IDENTIFIER
+
+    RPAREN          shift and go to state 106
+    COMMA           shift and go to state 107
+
+
+state 84
+
+    (17) array_dims -> NUMBER .
+
+    RPAREN          reduce using rule 17 (array_dims -> NUMBER .)
+    COMMA           reduce using rule 17 (array_dims -> NUMBER .)
+
+
+state 85
+
+    (49) primary -> LPAREN expression RPAREN .
+
+    POWER           reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    CONTINUE        reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    EXIT            reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    DIMENSION       reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    IF              reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    DO              reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    PRINT           reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    READ            reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    INTEGER         reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    REAL            reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    CHARACTER       reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    LOGICAL         reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    IDENTIFIER      reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    $end            reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    ENDIF           reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    ELSE            reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    ENDDO           reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    GT              reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    LT              reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    GE              reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    LE              reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    EQ              reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    NE              reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    AND             reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+    OR              reduce using rule 49 (primary -> LPAREN expression RPAREN .)
+
+
+state 86
+
+    (40) expression -> expression PLUS term .
+    (43) term -> term . TIMES factor
+    (44) term -> term . DIVIDE factor
+
+    RPAREN          reduce using rule 40 (expression -> expression PLUS term .)
+    PLUS            reduce using rule 40 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 40 (expression -> expression PLUS term .)
+    COMMA           reduce using rule 40 (expression -> expression PLUS term .)
+    CONTINUE        reduce using rule 40 (expression -> expression PLUS term .)
+    EXIT            reduce using rule 40 (expression -> expression PLUS term .)
+    DIMENSION       reduce using rule 40 (expression -> expression PLUS term .)
+    IF              reduce using rule 40 (expression -> expression PLUS term .)
+    DO              reduce using rule 40 (expression -> expression PLUS term .)
+    PRINT           reduce using rule 40 (expression -> expression PLUS term .)
+    READ            reduce using rule 40 (expression -> expression PLUS term .)
+    INTEGER         reduce using rule 40 (expression -> expression PLUS term .)
+    REAL            reduce using rule 40 (expression -> expression PLUS term .)
+    CHARACTER       reduce using rule 40 (expression -> expression PLUS term .)
+    LOGICAL         reduce using rule 40 (expression -> expression PLUS term .)
+    IDENTIFIER      reduce using rule 40 (expression -> expression PLUS term .)
+    $end            reduce using rule 40 (expression -> expression PLUS term .)
+    ENDIF           reduce using rule 40 (expression -> expression PLUS term .)
+    ELSE            reduce using rule 40 (expression -> expression PLUS term .)
+    ENDDO           reduce using rule 40 (expression -> expression PLUS term .)
+    GT              reduce using rule 40 (expression -> expression PLUS term .)
+    LT              reduce using rule 40 (expression -> expression PLUS term .)
+    GE              reduce using rule 40 (expression -> expression PLUS term .)
+    LE              reduce using rule 40 (expression -> expression PLUS term .)
+    EQ              reduce using rule 40 (expression -> expression PLUS term .)
+    NE              reduce using rule 40 (expression -> expression PLUS term .)
+    AND             reduce using rule 40 (expression -> expression PLUS term .)
+    OR              reduce using rule 40 (expression -> expression PLUS term .)
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+
+
+state 87
+
+    (41) expression -> expression MINUS term .
+    (43) term -> term . TIMES factor
+    (44) term -> term . DIVIDE factor
+
+    RPAREN          reduce using rule 41 (expression -> expression MINUS term .)
+    PLUS            reduce using rule 41 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 41 (expression -> expression MINUS term .)
+    COMMA           reduce using rule 41 (expression -> expression MINUS term .)
+    CONTINUE        reduce using rule 41 (expression -> expression MINUS term .)
+    EXIT            reduce using rule 41 (expression -> expression MINUS term .)
+    DIMENSION       reduce using rule 41 (expression -> expression MINUS term .)
+    IF              reduce using rule 41 (expression -> expression MINUS term .)
+    DO              reduce using rule 41 (expression -> expression MINUS term .)
+    PRINT           reduce using rule 41 (expression -> expression MINUS term .)
+    READ            reduce using rule 41 (expression -> expression MINUS term .)
+    INTEGER         reduce using rule 41 (expression -> expression MINUS term .)
+    REAL            reduce using rule 41 (expression -> expression MINUS term .)
+    CHARACTER       reduce using rule 41 (expression -> expression MINUS term .)
+    LOGICAL         reduce using rule 41 (expression -> expression MINUS term .)
+    IDENTIFIER      reduce using rule 41 (expression -> expression MINUS term .)
+    $end            reduce using rule 41 (expression -> expression MINUS term .)
+    ENDIF           reduce using rule 41 (expression -> expression MINUS term .)
+    ELSE            reduce using rule 41 (expression -> expression MINUS term .)
+    ENDDO           reduce using rule 41 (expression -> expression MINUS term .)
+    GT              reduce using rule 41 (expression -> expression MINUS term .)
+    LT              reduce using rule 41 (expression -> expression MINUS term .)
+    GE              reduce using rule 41 (expression -> expression MINUS term .)
+    LE              reduce using rule 41 (expression -> expression MINUS term .)
+    EQ              reduce using rule 41 (expression -> expression MINUS term .)
+    NE              reduce using rule 41 (expression -> expression MINUS term .)
+    AND             reduce using rule 41 (expression -> expression MINUS term .)
+    OR              reduce using rule 41 (expression -> expression MINUS term .)
+    TIMES           shift and go to state 60
+    DIVIDE          shift and go to state 61
+
+
+state 88
+
+    (52) expression_list -> expression_list COMMA expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 52 (expression_list -> expression_list COMMA expression .)
+    COMMA           reduce using rule 52 (expression_list -> expression_list COMMA expression .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 89
+
+    (43) term -> term TIMES factor .
+    (46) factor -> factor . POWER primary
+
+    TIMES           reduce using rule 43 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 43 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 43 (term -> term TIMES factor .)
+    PLUS            reduce using rule 43 (term -> term TIMES factor .)
+    MINUS           reduce using rule 43 (term -> term TIMES factor .)
+    COMMA           reduce using rule 43 (term -> term TIMES factor .)
+    CONTINUE        reduce using rule 43 (term -> term TIMES factor .)
+    EXIT            reduce using rule 43 (term -> term TIMES factor .)
+    DIMENSION       reduce using rule 43 (term -> term TIMES factor .)
+    IF              reduce using rule 43 (term -> term TIMES factor .)
+    DO              reduce using rule 43 (term -> term TIMES factor .)
+    PRINT           reduce using rule 43 (term -> term TIMES factor .)
+    READ            reduce using rule 43 (term -> term TIMES factor .)
+    INTEGER         reduce using rule 43 (term -> term TIMES factor .)
+    REAL            reduce using rule 43 (term -> term TIMES factor .)
+    CHARACTER       reduce using rule 43 (term -> term TIMES factor .)
+    LOGICAL         reduce using rule 43 (term -> term TIMES factor .)
+    IDENTIFIER      reduce using rule 43 (term -> term TIMES factor .)
+    $end            reduce using rule 43 (term -> term TIMES factor .)
+    ENDIF           reduce using rule 43 (term -> term TIMES factor .)
+    ELSE            reduce using rule 43 (term -> term TIMES factor .)
+    ENDDO           reduce using rule 43 (term -> term TIMES factor .)
+    GT              reduce using rule 43 (term -> term TIMES factor .)
+    LT              reduce using rule 43 (term -> term TIMES factor .)
+    GE              reduce using rule 43 (term -> term TIMES factor .)
+    LE              reduce using rule 43 (term -> term TIMES factor .)
+    EQ              reduce using rule 43 (term -> term TIMES factor .)
+    NE              reduce using rule 43 (term -> term TIMES factor .)
+    AND             reduce using rule 43 (term -> term TIMES factor .)
+    OR              reduce using rule 43 (term -> term TIMES factor .)
+    POWER           shift and go to state 62
+
+
+state 90
+
+    (44) term -> term DIVIDE factor .
+    (46) factor -> factor . POWER primary
+
+    TIMES           reduce using rule 44 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 44 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 44 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 44 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 44 (term -> term DIVIDE factor .)
+    COMMA           reduce using rule 44 (term -> term DIVIDE factor .)
+    CONTINUE        reduce using rule 44 (term -> term DIVIDE factor .)
+    EXIT            reduce using rule 44 (term -> term DIVIDE factor .)
+    DIMENSION       reduce using rule 44 (term -> term DIVIDE factor .)
+    IF              reduce using rule 44 (term -> term DIVIDE factor .)
+    DO              reduce using rule 44 (term -> term DIVIDE factor .)
+    PRINT           reduce using rule 44 (term -> term DIVIDE factor .)
+    READ            reduce using rule 44 (term -> term DIVIDE factor .)
+    INTEGER         reduce using rule 44 (term -> term DIVIDE factor .)
+    REAL            reduce using rule 44 (term -> term DIVIDE factor .)
+    CHARACTER       reduce using rule 44 (term -> term DIVIDE factor .)
+    LOGICAL         reduce using rule 44 (term -> term DIVIDE factor .)
+    IDENTIFIER      reduce using rule 44 (term -> term DIVIDE factor .)
+    $end            reduce using rule 44 (term -> term DIVIDE factor .)
+    ENDIF           reduce using rule 44 (term -> term DIVIDE factor .)
+    ELSE            reduce using rule 44 (term -> term DIVIDE factor .)
+    ENDDO           reduce using rule 44 (term -> term DIVIDE factor .)
+    GT              reduce using rule 44 (term -> term DIVIDE factor .)
+    LT              reduce using rule 44 (term -> term DIVIDE factor .)
+    GE              reduce using rule 44 (term -> term DIVIDE factor .)
+    LE              reduce using rule 44 (term -> term DIVIDE factor .)
+    EQ              reduce using rule 44 (term -> term DIVIDE factor .)
+    NE              reduce using rule 44 (term -> term DIVIDE factor .)
+    AND             reduce using rule 44 (term -> term DIVIDE factor .)
+    OR              reduce using rule 44 (term -> term DIVIDE factor .)
+    POWER           shift and go to state 62
+
+
+state 91
+
+    (46) factor -> factor POWER primary .
+
+    POWER           reduce using rule 46 (factor -> factor POWER primary .)
+    TIMES           reduce using rule 46 (factor -> factor POWER primary .)
+    DIVIDE          reduce using rule 46 (factor -> factor POWER primary .)
+    RPAREN          reduce using rule 46 (factor -> factor POWER primary .)
+    PLUS            reduce using rule 46 (factor -> factor POWER primary .)
+    MINUS           reduce using rule 46 (factor -> factor POWER primary .)
+    COMMA           reduce using rule 46 (factor -> factor POWER primary .)
+    CONTINUE        reduce using rule 46 (factor -> factor POWER primary .)
+    EXIT            reduce using rule 46 (factor -> factor POWER primary .)
+    DIMENSION       reduce using rule 46 (factor -> factor POWER primary .)
+    IF              reduce using rule 46 (factor -> factor POWER primary .)
+    DO              reduce using rule 46 (factor -> factor POWER primary .)
+    PRINT           reduce using rule 46 (factor -> factor POWER primary .)
+    READ            reduce using rule 46 (factor -> factor POWER primary .)
+    INTEGER         reduce using rule 46 (factor -> factor POWER primary .)
+    REAL            reduce using rule 46 (factor -> factor POWER primary .)
+    CHARACTER       reduce using rule 46 (factor -> factor POWER primary .)
+    LOGICAL         reduce using rule 46 (factor -> factor POWER primary .)
+    IDENTIFIER      reduce using rule 46 (factor -> factor POWER primary .)
+    $end            reduce using rule 46 (factor -> factor POWER primary .)
+    ENDIF           reduce using rule 46 (factor -> factor POWER primary .)
+    ELSE            reduce using rule 46 (factor -> factor POWER primary .)
+    ENDDO           reduce using rule 46 (factor -> factor POWER primary .)
+    GT              reduce using rule 46 (factor -> factor POWER primary .)
+    LT              reduce using rule 46 (factor -> factor POWER primary .)
+    GE              reduce using rule 46 (factor -> factor POWER primary .)
+    LE              reduce using rule 46 (factor -> factor POWER primary .)
+    EQ              reduce using rule 46 (factor -> factor POWER primary .)
+    NE              reduce using rule 46 (factor -> factor POWER primary .)
+    AND             reduce using rule 46 (factor -> factor POWER primary .)
+    OR              reduce using rule 46 (factor -> factor POWER primary .)
+
+
+state 92
+
+    (12) declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims . RPAREN
+    (19) array_dims -> array_dims . COMMA NUMBER
+    (20) array_dims -> array_dims . COMMA IDENTIFIER
+
+    RPAREN          shift and go to state 108
+    COMMA           shift and go to state 107
+
+
+state 93
+
+    (62) condition -> LPAREN condition RPAREN .
+
+    RPAREN          reduce using rule 62 (condition -> LPAREN condition RPAREN .)
+    AND             reduce using rule 62 (condition -> LPAREN condition RPAREN .)
+    OR              reduce using rule 62 (condition -> LPAREN condition RPAREN .)
+
+
+state 94
+
+    (26) if_statement -> IF LPAREN condition RPAREN THEN . statement_list ENDIF
+    (27) if_statement -> IF LPAREN condition RPAREN THEN . statement_list ELSE statement_list ENDIF
+    (29) statement_list -> . statement
+    (30) statement_list -> . statement_list statement
+    (3) statement -> . declaration
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) statement -> . io_statement
+    (8) statement -> . CONTINUE
+    (9) statement -> . EXIT
+    (10) declaration -> . type DCOLON IDENTIFIER
+    (11) declaration -> . type DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (12) declaration -> . DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (21) assignment -> . target EQUALS expression
+    (26) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ENDIF
+    (27) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF
+    (28) do_loop -> . DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO
+    (31) io_statement -> . PRINT TIMES COMMA print_list
+    (32) io_statement -> . READ TIMES COMMA read_list
+    (13) type -> . INTEGER
+    (14) type -> . REAL
+    (15) type -> . CHARACTER
+    (16) type -> . LOGICAL
+    (22) target -> . IDENTIFIER
+    (23) target -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    CONTINUE        shift and go to state 8
+    EXIT            shift and go to state 9
+    DIMENSION       shift and go to state 12
+    IF              shift and go to state 14
+    DO              shift and go to state 15
+    PRINT           shift and go to state 16
+    READ            shift and go to state 17
+    INTEGER         shift and go to state 18
+    REAL            shift and go to state 19
+    CHARACTER       shift and go to state 20
+    LOGICAL         shift and go to state 21
+    IDENTIFIER      shift and go to state 11
+
+    statement_list                 shift and go to state 109
+    statement                      shift and go to state 110
+    declaration                    shift and go to state 3
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+    io_statement                   shift and go to state 7
+    type                           shift and go to state 10
+    target                         shift and go to state 13
+    array_ref                      shift and go to state 22
+
+state 95
+
+    (59) condition -> condition AND condition .
+    (59) condition -> condition . AND condition
+    (60) condition -> condition . OR condition
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    RPAREN          reduce using rule 59 (condition -> condition AND condition .)
+    AND             shift and go to state 67
+    OR              shift and go to state 68
+
+  ! AND             [ reduce using rule 59 (condition -> condition AND condition .) ]
+  ! OR              [ reduce using rule 59 (condition -> condition AND condition .) ]
+
+
+state 96
+
+    (60) condition -> condition OR condition .
+    (59) condition -> condition . AND condition
+    (60) condition -> condition . OR condition
+
+  ! shift/reduce conflict for AND resolved as shift
+  ! shift/reduce conflict for OR resolved as shift
+    RPAREN          reduce using rule 60 (condition -> condition OR condition .)
+    AND             shift and go to state 67
+    OR              shift and go to state 68
+
+  ! AND             [ reduce using rule 60 (condition -> condition OR condition .) ]
+  ! OR              [ reduce using rule 60 (condition -> condition OR condition .) ]
+
+
+state 97
+
+    (53) condition -> expression GT expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 53 (condition -> expression GT expression .)
+    AND             reduce using rule 53 (condition -> expression GT expression .)
+    OR              reduce using rule 53 (condition -> expression GT expression .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 98
+
+    (54) condition -> expression LT expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 54 (condition -> expression LT expression .)
+    AND             reduce using rule 54 (condition -> expression LT expression .)
+    OR              reduce using rule 54 (condition -> expression LT expression .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 99
+
+    (55) condition -> expression GE expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 55 (condition -> expression GE expression .)
+    AND             reduce using rule 55 (condition -> expression GE expression .)
+    OR              reduce using rule 55 (condition -> expression GE expression .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 100
+
+    (56) condition -> expression LE expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 56 (condition -> expression LE expression .)
+    AND             reduce using rule 56 (condition -> expression LE expression .)
+    OR              reduce using rule 56 (condition -> expression LE expression .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 101
+
+    (57) condition -> expression EQ expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 57 (condition -> expression EQ expression .)
+    AND             reduce using rule 57 (condition -> expression EQ expression .)
+    OR              reduce using rule 57 (condition -> expression EQ expression .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 102
+
+    (58) condition -> expression NE expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 58 (condition -> expression NE expression .)
+    AND             reduce using rule 58 (condition -> expression NE expression .)
+    OR              reduce using rule 58 (condition -> expression NE expression .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 103
+
+    (28) do_loop -> DO IDENTIFIER EQUALS expression COMMA . expression statement_list ENDDO
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 111
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 104
+
+    (35) print_list -> print_list COMMA . expression
+    (36) print_list -> print_list COMMA . STRING
+    (39) expression -> . term
+    (40) expression -> . expression PLUS term
+    (41) expression -> . expression MINUS term
+    (42) term -> . factor
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) factor -> . primary
+    (46) factor -> . factor POWER primary
+    (47) primary -> . NUMBER
+    (48) primary -> . IDENTIFIER
+    (49) primary -> . LPAREN expression RPAREN
+    (50) primary -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    STRING          shift and go to state 113
+    NUMBER          shift and go to state 40
+    IDENTIFIER      shift and go to state 33
+    LPAREN          shift and go to state 34
+
+    expression                     shift and go to state 112
+    term                           shift and go to state 37
+    factor                         shift and go to state 38
+    primary                        shift and go to state 39
+    array_ref                      shift and go to state 41
+
+state 105
+
+    (38) read_list -> read_list COMMA . IDENTIFIER
+
+    IDENTIFIER      shift and go to state 114
+
+
+state 106
+
+    (11) declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .
+
+    CONTINUE        reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    EXIT            reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    DIMENSION       reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    IF              reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    DO              reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    PRINT           reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    READ            reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    INTEGER         reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    REAL            reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    CHARACTER       reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    LOGICAL         reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    IDENTIFIER      reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    $end            reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    ENDIF           reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    ELSE            reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    ENDDO           reduce using rule 11 (declaration -> type DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+
+
+state 107
+
+    (19) array_dims -> array_dims COMMA . NUMBER
+    (20) array_dims -> array_dims COMMA . IDENTIFIER
+
+    NUMBER          shift and go to state 115
+    IDENTIFIER      shift and go to state 116
+
+
+state 108
+
+    (12) declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .
+
+    CONTINUE        reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    EXIT            reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    DIMENSION       reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    IF              reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    DO              reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    PRINT           reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    READ            reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    INTEGER         reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    REAL            reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    CHARACTER       reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    LOGICAL         reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    IDENTIFIER      reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    $end            reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    ENDIF           reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    ELSE            reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+    ENDDO           reduce using rule 12 (declaration -> DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN .)
+
+
+state 109
+
+    (26) if_statement -> IF LPAREN condition RPAREN THEN statement_list . ENDIF
+    (27) if_statement -> IF LPAREN condition RPAREN THEN statement_list . ELSE statement_list ENDIF
+    (30) statement_list -> statement_list . statement
+    (3) statement -> . declaration
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) statement -> . io_statement
+    (8) statement -> . CONTINUE
+    (9) statement -> . EXIT
+    (10) declaration -> . type DCOLON IDENTIFIER
+    (11) declaration -> . type DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (12) declaration -> . DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (21) assignment -> . target EQUALS expression
+    (26) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ENDIF
+    (27) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF
+    (28) do_loop -> . DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO
+    (31) io_statement -> . PRINT TIMES COMMA print_list
+    (32) io_statement -> . READ TIMES COMMA read_list
+    (13) type -> . INTEGER
+    (14) type -> . REAL
+    (15) type -> . CHARACTER
+    (16) type -> . LOGICAL
+    (22) target -> . IDENTIFIER
+    (23) target -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    ENDIF           shift and go to state 117
+    ELSE            shift and go to state 118
+    CONTINUE        shift and go to state 8
+    EXIT            shift and go to state 9
+    DIMENSION       shift and go to state 12
+    IF              shift and go to state 14
+    DO              shift and go to state 15
+    PRINT           shift and go to state 16
+    READ            shift and go to state 17
+    INTEGER         shift and go to state 18
+    REAL            shift and go to state 19
+    CHARACTER       shift and go to state 20
+    LOGICAL         shift and go to state 21
+    IDENTIFIER      shift and go to state 11
+
+    statement                      shift and go to state 119
+    declaration                    shift and go to state 3
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+    io_statement                   shift and go to state 7
+    type                           shift and go to state 10
+    target                         shift and go to state 13
+    array_ref                      shift and go to state 22
+
+state 110
+
+    (29) statement_list -> statement .
+
+    ENDIF           reduce using rule 29 (statement_list -> statement .)
+    ELSE            reduce using rule 29 (statement_list -> statement .)
+    CONTINUE        reduce using rule 29 (statement_list -> statement .)
+    EXIT            reduce using rule 29 (statement_list -> statement .)
+    DIMENSION       reduce using rule 29 (statement_list -> statement .)
+    IF              reduce using rule 29 (statement_list -> statement .)
+    DO              reduce using rule 29 (statement_list -> statement .)
+    PRINT           reduce using rule 29 (statement_list -> statement .)
+    READ            reduce using rule 29 (statement_list -> statement .)
+    INTEGER         reduce using rule 29 (statement_list -> statement .)
+    REAL            reduce using rule 29 (statement_list -> statement .)
+    CHARACTER       reduce using rule 29 (statement_list -> statement .)
+    LOGICAL         reduce using rule 29 (statement_list -> statement .)
+    IDENTIFIER      reduce using rule 29 (statement_list -> statement .)
+    ENDDO           reduce using rule 29 (statement_list -> statement .)
+
+
+state 111
+
+    (28) do_loop -> DO IDENTIFIER EQUALS expression COMMA expression . statement_list ENDDO
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+    (29) statement_list -> . statement
+    (30) statement_list -> . statement_list statement
+    (3) statement -> . declaration
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) statement -> . io_statement
+    (8) statement -> . CONTINUE
+    (9) statement -> . EXIT
+    (10) declaration -> . type DCOLON IDENTIFIER
+    (11) declaration -> . type DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (12) declaration -> . DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (21) assignment -> . target EQUALS expression
+    (26) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ENDIF
+    (27) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF
+    (28) do_loop -> . DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO
+    (31) io_statement -> . PRINT TIMES COMMA print_list
+    (32) io_statement -> . READ TIMES COMMA read_list
+    (13) type -> . INTEGER
+    (14) type -> . REAL
+    (15) type -> . CHARACTER
+    (16) type -> . LOGICAL
+    (22) target -> . IDENTIFIER
+    (23) target -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+    CONTINUE        shift and go to state 8
+    EXIT            shift and go to state 9
+    DIMENSION       shift and go to state 12
+    IF              shift and go to state 14
+    DO              shift and go to state 15
+    PRINT           shift and go to state 16
+    READ            shift and go to state 17
+    INTEGER         shift and go to state 18
+    REAL            shift and go to state 19
+    CHARACTER       shift and go to state 20
+    LOGICAL         shift and go to state 21
+    IDENTIFIER      shift and go to state 11
+
+    statement_list                 shift and go to state 120
+    statement                      shift and go to state 110
+    declaration                    shift and go to state 3
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+    io_statement                   shift and go to state 7
+    type                           shift and go to state 10
+    target                         shift and go to state 13
+    array_ref                      shift and go to state 22
+
+state 112
+
+    (35) print_list -> print_list COMMA expression .
+    (40) expression -> expression . PLUS term
+    (41) expression -> expression . MINUS term
+
+    COMMA           reduce using rule 35 (print_list -> print_list COMMA expression .)
+    CONTINUE        reduce using rule 35 (print_list -> print_list COMMA expression .)
+    EXIT            reduce using rule 35 (print_list -> print_list COMMA expression .)
+    DIMENSION       reduce using rule 35 (print_list -> print_list COMMA expression .)
+    IF              reduce using rule 35 (print_list -> print_list COMMA expression .)
+    DO              reduce using rule 35 (print_list -> print_list COMMA expression .)
+    PRINT           reduce using rule 35 (print_list -> print_list COMMA expression .)
+    READ            reduce using rule 35 (print_list -> print_list COMMA expression .)
+    INTEGER         reduce using rule 35 (print_list -> print_list COMMA expression .)
+    REAL            reduce using rule 35 (print_list -> print_list COMMA expression .)
+    CHARACTER       reduce using rule 35 (print_list -> print_list COMMA expression .)
+    LOGICAL         reduce using rule 35 (print_list -> print_list COMMA expression .)
+    IDENTIFIER      reduce using rule 35 (print_list -> print_list COMMA expression .)
+    $end            reduce using rule 35 (print_list -> print_list COMMA expression .)
+    ENDIF           reduce using rule 35 (print_list -> print_list COMMA expression .)
+    ELSE            reduce using rule 35 (print_list -> print_list COMMA expression .)
+    ENDDO           reduce using rule 35 (print_list -> print_list COMMA expression .)
+    PLUS            shift and go to state 56
+    MINUS           shift and go to state 57
+
+
+state 113
+
+    (36) print_list -> print_list COMMA STRING .
+
+    COMMA           reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    CONTINUE        reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    EXIT            reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    DIMENSION       reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    IF              reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    DO              reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    PRINT           reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    READ            reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    INTEGER         reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    REAL            reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    CHARACTER       reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    LOGICAL         reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    IDENTIFIER      reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    $end            reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    ENDIF           reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    ELSE            reduce using rule 36 (print_list -> print_list COMMA STRING .)
+    ENDDO           reduce using rule 36 (print_list -> print_list COMMA STRING .)
+
+
+state 114
+
+    (38) read_list -> read_list COMMA IDENTIFIER .
+
+    COMMA           reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    CONTINUE        reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    EXIT            reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    DIMENSION       reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    IF              reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    DO              reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    PRINT           reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    READ            reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    INTEGER         reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    REAL            reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    CHARACTER       reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    LOGICAL         reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    IDENTIFIER      reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    $end            reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    ENDIF           reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    ELSE            reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+    ENDDO           reduce using rule 38 (read_list -> read_list COMMA IDENTIFIER .)
+
+
+state 115
+
+    (19) array_dims -> array_dims COMMA NUMBER .
+
+    RPAREN          reduce using rule 19 (array_dims -> array_dims COMMA NUMBER .)
+    COMMA           reduce using rule 19 (array_dims -> array_dims COMMA NUMBER .)
+
+
+state 116
+
+    (20) array_dims -> array_dims COMMA IDENTIFIER .
+
+    RPAREN          reduce using rule 20 (array_dims -> array_dims COMMA IDENTIFIER .)
+    COMMA           reduce using rule 20 (array_dims -> array_dims COMMA IDENTIFIER .)
+
+
+state 117
+
+    (26) if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .
+
+    CONTINUE        reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    EXIT            reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    DIMENSION       reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    IF              reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    DO              reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    PRINT           reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    READ            reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    INTEGER         reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    REAL            reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    CHARACTER       reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    LOGICAL         reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    IDENTIFIER      reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    $end            reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    ENDIF           reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    ELSE            reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+    ENDDO           reduce using rule 26 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ENDIF .)
+
+
+state 118
+
+    (27) if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE . statement_list ENDIF
+    (29) statement_list -> . statement
+    (30) statement_list -> . statement_list statement
+    (3) statement -> . declaration
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) statement -> . io_statement
+    (8) statement -> . CONTINUE
+    (9) statement -> . EXIT
+    (10) declaration -> . type DCOLON IDENTIFIER
+    (11) declaration -> . type DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (12) declaration -> . DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (21) assignment -> . target EQUALS expression
+    (26) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ENDIF
+    (27) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF
+    (28) do_loop -> . DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO
+    (31) io_statement -> . PRINT TIMES COMMA print_list
+    (32) io_statement -> . READ TIMES COMMA read_list
+    (13) type -> . INTEGER
+    (14) type -> . REAL
+    (15) type -> . CHARACTER
+    (16) type -> . LOGICAL
+    (22) target -> . IDENTIFIER
+    (23) target -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    CONTINUE        shift and go to state 8
+    EXIT            shift and go to state 9
+    DIMENSION       shift and go to state 12
+    IF              shift and go to state 14
+    DO              shift and go to state 15
+    PRINT           shift and go to state 16
+    READ            shift and go to state 17
+    INTEGER         shift and go to state 18
+    REAL            shift and go to state 19
+    CHARACTER       shift and go to state 20
+    LOGICAL         shift and go to state 21
+    IDENTIFIER      shift and go to state 11
+
+    statement_list                 shift and go to state 121
+    statement                      shift and go to state 110
+    declaration                    shift and go to state 3
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+    io_statement                   shift and go to state 7
+    type                           shift and go to state 10
+    target                         shift and go to state 13
+    array_ref                      shift and go to state 22
+
+state 119
+
+    (30) statement_list -> statement_list statement .
+
+    ENDIF           reduce using rule 30 (statement_list -> statement_list statement .)
+    ELSE            reduce using rule 30 (statement_list -> statement_list statement .)
+    CONTINUE        reduce using rule 30 (statement_list -> statement_list statement .)
+    EXIT            reduce using rule 30 (statement_list -> statement_list statement .)
+    DIMENSION       reduce using rule 30 (statement_list -> statement_list statement .)
+    IF              reduce using rule 30 (statement_list -> statement_list statement .)
+    DO              reduce using rule 30 (statement_list -> statement_list statement .)
+    PRINT           reduce using rule 30 (statement_list -> statement_list statement .)
+    READ            reduce using rule 30 (statement_list -> statement_list statement .)
+    INTEGER         reduce using rule 30 (statement_list -> statement_list statement .)
+    REAL            reduce using rule 30 (statement_list -> statement_list statement .)
+    CHARACTER       reduce using rule 30 (statement_list -> statement_list statement .)
+    LOGICAL         reduce using rule 30 (statement_list -> statement_list statement .)
+    IDENTIFIER      reduce using rule 30 (statement_list -> statement_list statement .)
+    ENDDO           reduce using rule 30 (statement_list -> statement_list statement .)
+
+
+state 120
+
+    (28) do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list . ENDDO
+    (30) statement_list -> statement_list . statement
+    (3) statement -> . declaration
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) statement -> . io_statement
+    (8) statement -> . CONTINUE
+    (9) statement -> . EXIT
+    (10) declaration -> . type DCOLON IDENTIFIER
+    (11) declaration -> . type DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (12) declaration -> . DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (21) assignment -> . target EQUALS expression
+    (26) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ENDIF
+    (27) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF
+    (28) do_loop -> . DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO
+    (31) io_statement -> . PRINT TIMES COMMA print_list
+    (32) io_statement -> . READ TIMES COMMA read_list
+    (13) type -> . INTEGER
+    (14) type -> . REAL
+    (15) type -> . CHARACTER
+    (16) type -> . LOGICAL
+    (22) target -> . IDENTIFIER
+    (23) target -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    ENDDO           shift and go to state 122
+    CONTINUE        shift and go to state 8
+    EXIT            shift and go to state 9
+    DIMENSION       shift and go to state 12
+    IF              shift and go to state 14
+    DO              shift and go to state 15
+    PRINT           shift and go to state 16
+    READ            shift and go to state 17
+    INTEGER         shift and go to state 18
+    REAL            shift and go to state 19
+    CHARACTER       shift and go to state 20
+    LOGICAL         shift and go to state 21
+    IDENTIFIER      shift and go to state 11
+
+    statement                      shift and go to state 119
+    declaration                    shift and go to state 3
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+    io_statement                   shift and go to state 7
+    type                           shift and go to state 10
+    target                         shift and go to state 13
+    array_ref                      shift and go to state 22
+
+state 121
+
+    (27) if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list . ENDIF
+    (30) statement_list -> statement_list . statement
+    (3) statement -> . declaration
+    (4) statement -> . assignment
+    (5) statement -> . if_statement
+    (6) statement -> . do_loop
+    (7) statement -> . io_statement
+    (8) statement -> . CONTINUE
+    (9) statement -> . EXIT
+    (10) declaration -> . type DCOLON IDENTIFIER
+    (11) declaration -> . type DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (12) declaration -> . DIMENSION DCOLON IDENTIFIER LPAREN array_dims RPAREN
+    (21) assignment -> . target EQUALS expression
+    (26) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ENDIF
+    (27) if_statement -> . IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF
+    (28) do_loop -> . DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO
+    (31) io_statement -> . PRINT TIMES COMMA print_list
+    (32) io_statement -> . READ TIMES COMMA read_list
+    (13) type -> . INTEGER
+    (14) type -> . REAL
+    (15) type -> . CHARACTER
+    (16) type -> . LOGICAL
+    (22) target -> . IDENTIFIER
+    (23) target -> . array_ref
+    (24) array_ref -> . IDENTIFIER LPAREN expression RPAREN
+    (25) array_ref -> . IDENTIFIER LPAREN expression_list RPAREN
+
+    ENDIF           shift and go to state 123
+    CONTINUE        shift and go to state 8
+    EXIT            shift and go to state 9
+    DIMENSION       shift and go to state 12
+    IF              shift and go to state 14
+    DO              shift and go to state 15
+    PRINT           shift and go to state 16
+    READ            shift and go to state 17
+    INTEGER         shift and go to state 18
+    REAL            shift and go to state 19
+    CHARACTER       shift and go to state 20
+    LOGICAL         shift and go to state 21
+    IDENTIFIER      shift and go to state 11
+
+    statement                      shift and go to state 119
+    declaration                    shift and go to state 3
+    assignment                     shift and go to state 4
+    if_statement                   shift and go to state 5
+    do_loop                        shift and go to state 6
+    io_statement                   shift and go to state 7
+    type                           shift and go to state 10
+    target                         shift and go to state 13
+    array_ref                      shift and go to state 22
+
+state 122
+
+    (28) do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .
+
+    CONTINUE        reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    EXIT            reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    DIMENSION       reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    IF              reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    DO              reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    PRINT           reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    READ            reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    INTEGER         reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    REAL            reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    CHARACTER       reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    LOGICAL         reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    IDENTIFIER      reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    $end            reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    ENDIF           reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    ELSE            reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+    ENDDO           reduce using rule 28 (do_loop -> DO IDENTIFIER EQUALS expression COMMA expression statement_list ENDDO .)
+
+
+state 123
+
+    (27) if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .
+
+    CONTINUE        reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    EXIT            reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    DIMENSION       reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    IF              reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    DO              reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    PRINT           reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    READ            reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    INTEGER         reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    REAL            reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    CHARACTER       reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    LOGICAL         reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    IDENTIFIER      reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    $end            reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    ENDIF           reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    ELSE            reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+    ENDDO           reduce using rule 27 (if_statement -> IF LPAREN condition RPAREN THEN statement_list ELSE statement_list ENDIF .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for RPAREN in state 35 resolved as shift
+WARNING: shift/reduce conflict for AND in state 75 resolved as shift
+WARNING: shift/reduce conflict for OR in state 75 resolved as shift
+WARNING: shift/reduce conflict for AND in state 95 resolved as shift
+WARNING: shift/reduce conflict for OR in state 95 resolved as shift
+WARNING: shift/reduce conflict for AND in state 96 resolved as shift
+WARNING: shift/reduce conflict for OR in state 96 resolved as shift
